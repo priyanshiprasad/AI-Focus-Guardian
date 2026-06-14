@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+httpx
+bcrypt
+PyJWT
+email-validator
+resend
+google-auth
+requests

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Focus Guardian — Stay on Track</title>
+<link rel="stylesheet" href="./blocked.css"/>
+<script src="./blocked.js" defer></script>
+</head>
+
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="card header-card">
+    <div class="blocked-badge">
+      <div class="blocked-icon">🛡️</div>
+      <div class="blocked-text">
+        <h1>Site Blocked</h1>
+        <div class="blocked-url" id="blocked-url">Loading...</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num" id="block-count">0</div>
+        <div class="stat-label">Blocked Today</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="focus-streak">0</div>
+        <div class="stat-label">Min Focused</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POMODORO -->
+  <div class="card">
+    <div class="pomodoro-label">Pomodoro Timer</div>
+    <div class="timer-ring">
+      <svg width="160" height="160" viewBox="0 0 160 160">
+        <circle class="ring-bg" cx="80" cy="80" r="70"/>
+        <circle class="ring-fill" id="ring" cx="80" cy="80" r="70"/>
+      </svg>
+      <div class="timer-display">
+        <div class="timer-time" id="timer-display">25:00</div>
+        <div class="timer-mode" id="timer-mode">Focus</div>
+      </div>
+    </div>
+    <div class="timer-btns">
+      <button class="btn btn-primary" id="start-btn">▶ Start</button>
+      <button class="btn btn-secondary" id="reset-btn">↺ Reset</button>
+    </div>
+    <div class="pomodoro-modes">
+      <button class="mode-btn active" data-mins="25" data-label="Focus">Focus</button>
+      <button class="mode-btn" data-mins="5" data-label="Short Break">Short Break</button>
+      <button class="mode-btn" data-mins="15" data-label="Long Break">Long Break</button>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="card quote-card">
+    <div class="quote-icon">💡</div>
+    <div class="quote-text" id="quote-text"></div>
+    <div class="quote-author" id="quote-author"></div>
+    <button class="quote-refresh" id="quote-refresh-btn">↻ New Quote</button>
+  </div>
+
+  <!-- DSA CHALLENGE -->
+  <div class="card challenge-card">
+    <div class="challenge-header">
+      <div class="challenge-title">
+        🧩 Quick Challenge
+        <span class="difficulty easy" id="diff-badge">Easy</span>
+      </div>
+      <button class="new-q-btn" id="new-q-btn">New Question →</button>
+    </div>
+    <div class="challenge-q" id="challenge-q"></div>
+    <div class="challenge-footer">
+      <div class="challenge-tags" id="challenge-tags"></div>
+      <a class="solve-link" id="solve-link" href="#" target="_blank">Solve on LeetCode ↗</a>
+    </div>
+  </div>
+
+  <div class="go-back">
+    Blocked by AI Focus Guardian •
+    <a href="http://localhost:8000/dashboard" target="_blank">📊 View Dashboard</a> •
+    <a href="#" id="go-back-link">Go Back</a>
+  </div>
+
+</div>
+
+<!-- Audio for timer done -->
+<audio id="timer-done-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8e1af0f2a6.mp3?filename=success-1-6297.mp3" preload="auto"></audio>
+
+</body>
+</html>

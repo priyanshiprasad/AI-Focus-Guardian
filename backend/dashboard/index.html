@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Focus Guardian — Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="styles.css"/>
+<script src="dashboard.js" defer></script>
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div id="login-gate" class="login-gate">
+  <div class="login-card">
+    <div style="font-size:36px;margin-bottom:12px;">🛡️</div>
+    <h2>Focus Guardian</h2>
+    <p>Sign in to view your productivity dashboard</p>
+
+    <div class="login-tabs">
+      <button class="ltab active" onclick="dswitch('login')">Login</button>
+      <button class="ltab" onclick="dswitch('register')">Register</button>
+    </div>
+
+    <div id="d-alert"></div>
+
+    <div id="reg-name-wrap" class="reg-field">
+      <div class="login-field">
+        <label>Full Name</label>
+        <input type="text" id="d-name" placeholder="Your Name"/>
+      </div>
+    </div>
+    <div class="login-field">
+      <label>Email</label>
+      <input type="email" id="d-email" placeholder="you@example.com"/>
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="d-pass" placeholder="••••••••"/>
+    </div>
+    <button class="login-btn" id="d-submit" onclick="dSubmit()">Login</button>
+    <div id="d-msg" class="login-error"></div>
+  </div>
+</div>
+
+<!-- MAIN DASHBOARD -->
+<div id="dashboard" style="display:none;">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <div class="nav-icon">🛡️</div>
+      <div>
+        <div class="nav-title">Focus Guardian</div>
+        <div class="nav-sub">Analytics Dashboard</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="user-info">
+        <div class="user-name" id="nav-name">...</div>
+        <div class="user-email" id="nav-email">...</div>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="main">
+
+  <!-- HEADER -->
+  <div class="top-layout">
+
+    <!-- LEFT HERO -->
+    <div class="hero-panel">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">Productivity Dashboard</div>
+          <div class="page-sub" id="dash-date">Loading...</div>
+        </div>
+      </div>
+
+      <!-- LEVEL -->
+      <div class="level-card" id="level-card">
+        <div class="level-left">
+          <div class="level-icon" id="lv-icon">🌱</div>
+
+          <div class="level-info">
+            <div class="level-name" id="lv-name">Beginner</div>
+            <div class="level-pts" id="lv-pts">0 points</div>
+          </div>
+        </div>
+
+        <div class="level-bar-wrap">
+          <div class="level-bar-label">
+            <span>Progress</span>
+            <span id="lv-next"></span>
+          </div>
+
+          <div class="level-bar">
+            <div class="level-bar-fill" id="lv-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon">🚫</div>
+            <div class="stat-val" id="s-blocks">0</div>
+          </div>
+
+          <div class="stat-label">Sites Blocked</div>
+          <div class="stat-desc">1 block = 1 point</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-val" id="s-focus">0</div>
+          </div>
+
+          <div class="stat-label">Focus Minutes</div>
+          <div class="stat-desc">10 mins = 1 point</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-val" id="s-streak">0</div>
+          </div>
+
+          <div class="stat-label">Streak</div>
+          <div class="stat-desc">30+ mins daily</div>
+        </div>
+
+        <div class="stat-card accent">
+          <div class="stat-top">
+            <div class="stat-icon">💯</div>
+            <div class="stat-val" id="s-points">0</div>
+          </div>
+
+          <div class="stat-label">Focus Points</div>
+          <div class="stat-desc">Your productivity score</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="side-panel">
+
+      <div class="chart-card small-card">
+        <div class="chart-title">
+          <div class="chart-dot" style="background:var(--accent2)"></div>
+          Top Blocked Sites
+        </div>
+
+        <div class="domain-list" id="domain-list">
+          <div style="color:var(--muted);font-size:12px;">No data yet</div>
+        </div>
+      </div>
+
+      <div class="badges-card compact-badges">
+        <div class="badges-title">🏅 Achievements</div>
+
+        <div class="badges-grid" id="badges-grid">
+          <div style="color:var(--muted);font-size:12px;">
+            Loading badges...
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ANALYTICS SECTION -->
+<div class="analytics-layout">
+
+  <!-- BIG DAILY GRAPH -->
+  <div class="chart-card daily-big">
+    <div class="chart-title">
+      <div class="chart-dot" style="background:var(--accent)"></div>
+      Daily Blocks — Last 7 Days
+    </div>
+
+    <canvas id="chart-daily"></canvas>
+  </div>
+
+  <!-- LOWER 2 GRAPHS -->
+  <div class="bottom-graphs">
+
+    <div class="chart-card half-card">
+      <div class="chart-title">
+        <div class="chart-dot" style="background:var(--warn)"></div>
+        Hourly Distraction Pattern
+      </div>
+
+      <canvas id="chart-hourly"></canvas>
+    </div>
+
+    <div class="chart-card half-card">
+      <div class="chart-title">
+        <div class="chart-dot" style="background:var(--purple)"></div>
+        Productive vs Distracting
+      </div>
+
+      <canvas id="chart-pie"></canvas>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Focus Guardian — Login</title>
+<link rel="stylesheet" href="auth.css"/>
+<script src="auth.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="card">
+  <div class="logo">
+    <div class="logo-icon">🛡️</div>
+    <div>
+      <div class="logo-text">Focus Guardian</div>
+      <div class="logo-sub">AI-Powered Blocker</div>
+    </div>
+  </div>
+
+  <!-- TABS (hidden on forgot view) -->
+  <div class="tabs" id="tabs-row">
+    <button class="tab active" id="tab-login">Login</button>
+    <button class="tab" id="tab-register">Register</button>
+  </div>
+
+  <div class="server-error"   id="server-error"></div>
+  <div class="server-success" id="server-success"></div>
+
+  <!-- GOOGLE BUTTON (hidden on forgot view) -->
+  <div class="google-btn-wrap" id="google-btn-wrap">
+    <div id="g_id_onload"
+         data-client_id="770722561933-9g14861rbc1g4li0jn9ratfg3patfsb8.apps.googleusercontent.com"
+         data-callback="handleGoogleLogin"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="filled_black"
+         data-text="signin_with"
+         data-shape="rectangular"
+         data-width="310">
+    </div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div class="form" id="login-form">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="you@example.com"/>
+      <div class="error-msg" id="login-email-err"></div>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="••••••••"/>
+      <div class="error-msg" id="login-pass-err"></div>
+    </div>
+    <div class="forgot-wrap">
+      <button class="forgot-link" id="forgot-link">Forgot password?</button>
+    </div>
+    <button class="submit-btn" id="login-btn">Login</button>
+    <div class="resend-wrap" id="resend-wrap">
+      <button class="resend-btn" id="resend-btn">Resend verification email</button>
+    </div>
+  </div>
+
+  <!-- Sign Up nudge — shown only on login tab -->
+  <div class="signup-nudge" id="signup-nudge">
+    Don't have an account? <button id="goto-register">Sign Up</button>
+  </div>
+
+  <!-- REGISTER FORM -->
+  <div class="form form-hidden" id="register-form">
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="reg-name" placeholder="Your Name"/>
+      <div class="error-msg" id="reg-name-err"></div>
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="reg-email" placeholder="you@example.com"/>
+      <div class="error-msg" id="reg-email-err"></div>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="reg-password" placeholder="Min 6 characters"/>
+      <div class="error-msg" id="reg-pass-err"></div>
+    </div>
+    <button class="submit-btn" id="reg-btn">Create Account</button>
+  </div>
+
+  <!-- FORGOT PASSWORD FORM (inside card, hidden by default) -->
+  <div class="form-hidden" id="forgot-form">
+    <div class="forgot-header">
+      <button class="back-link" id="back-to-login">← Back to Login</button>
+      <h3>Reset Password</h3>
+      <p>Enter your email and we'll send you a link to reset your password.</p>
+    </div>
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" id="forgot-email" placeholder="you@example.com"/>
+      <div class="error-msg" id="forgot-email-err"></div>
+    </div>
+    <button class="submit-btn" id="forgot-btn">Send Reset Link</button>
+  </div>
+
+</div>
+
+</body>
+</html>

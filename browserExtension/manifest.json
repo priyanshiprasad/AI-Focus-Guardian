@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "AI Focus Guardian",
+  "version": "1.0",
+  "description": "AI-powered distraction blocker for students with smart URL filtering and productivity tracking.",
+  "permissions": [
+    "notifications",
+    "tabs",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://ai-focus-guardian-backend.onrender.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "auth.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}

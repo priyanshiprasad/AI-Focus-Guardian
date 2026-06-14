@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>AI Focus Guardian</title>
+<link rel="stylesheet" href="pop.css"/>
+<script src="pop.js" defer></script>
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">🛡️</div>
+    <div>
+      <div class="logo-text">Focus Guardian</div>
+      <div class="logo-sub">AI-Powered Blocker</div>
+    </div>
+  </div>
+  <div class="right-row">
+    <div>
+      <div class="user-badge" id="user-name">...</div>
+      <button class="logout-btn" >Logout</button>
+    </div>
+    <div class="toggle-wrap">
+      <div class="toggle-label" id="toggle-label">Active</div>
+      <button class="toggle active" id="main-toggle" ></button>
+    </div>
+  </div>
+</div>
+
+<div class="status-banner" id="status-banner">
+  <div class="status-dot"></div>
+  <div>
+    <div class="status-text" id="status-text">Focus Guardian is Active</div>
+    <div class="status-sub" id="status-sub">AI is watching your tabs</div>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-box"><div class="stat-num" id="stat-blocks">0</div><div class="stat-label">Blocked</div></div>
+  <div class="stat-box"><div class="stat-num" id="stat-focus">0</div><div class="stat-label">Min Focus</div></div>
+  <div class="stat-box"><div class="stat-num" id="stat-streak">0</div><div class="stat-label">Streak</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Recent Blocks</div>
+  <div class="block-list" id="block-list"><div class="empty-msg">No blocks yet today 🎉</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Whitelist a Site</div>
+  <div class="input-row">
+    <input class="domain-input" id="domain-input" type="text" placeholder="e.g. notion.so"/>
+    <button class="add-btn" id="add-btn" >+ Add</button>
+  </div>
+  <div class="whitelist-items" id="whitelist-items"></div>
+</div>
+
+<div class="footer">
+  <div class="footer-text">Resets daily at midnight</div>
+  <div class="footer-right">
+    <a class="dashboard-link" id="dash-btn" target="_blank">📊 Dashboard | </a>
+    <button class="clear-btn" onclick="clearStats()"> Clear Stats</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+</body>
+</html>
